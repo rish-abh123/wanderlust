@@ -78,17 +78,16 @@ app.use((req,res,next)=>{
     next();
 })
 
+app.get("/",(req,res)=>{
+    res.render("listings/index.ejs");
+})
+
 // for all Listings routes
 app.use("/listings",listings);
 // for all Review routes
 app.use("/listings/:id/reviews",reviews);
 //for all users routes
 app.use("/",userRoutes);
-//route route
-app.get("/", (req, res) => {
-  res.send("Server is running!");
-});
-
 // error-handling middleware
 app.use((err,req,res,next)=>{
   let {statusCode = 500,message="something went wrong"} = err;
