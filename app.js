@@ -18,6 +18,7 @@ const User = require("./models/user.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const userRoutes = require("./routes/user.js");
+const Listing = require("../models/listing.js");
 
 const app = express();
 app.set("view engine","ejs");
@@ -78,9 +79,15 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.get("/",(req,res)=>{
-    res.render("listings/index.ejs");
-})
+app.get("/", async (req, res) => {
+  try {
+    const allListing = await Listing.find({});
+    res.render("listings/index", { allListing });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 // for all Listings routes
 app.use("/listings",listings);
