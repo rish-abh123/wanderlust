@@ -18,7 +18,7 @@ const User = require("./models/user.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const userRoutes = require("./routes/user.js");
-const Listing = require("../models/listing.js");
+const Listing = require("./models/listing.js");
 
 const app = express();
 app.set("view engine","ejs");
