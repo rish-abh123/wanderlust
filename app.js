@@ -84,6 +84,10 @@ app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
 //for all users routes
 app.use("/",userRoutes);
+//route route
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
 
 // error-handling middleware
 app.use((err,req,res,next)=>{
